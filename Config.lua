@@ -59,7 +59,7 @@ Config.Flatbeds = {
         },
         Marker = vector3(-1.85, 0.4, -1.2), -- X, Y, Z | Marker Location
         Attach = vector2(0.0, 1.0), -- X, Y | Attach/Weld Location
-        Radius = 3.0, -- Integer | ClosestVehicle Radius
+        Radius = 4.0, -- Integer | ClosestVehicle Radius
         Default = {
             Pos = vector3(0.0, -3.8, 0.35), -- X, Y(Runs Second), Z(Runs First) | Default Offset Position
             Rot = vector3(0.0, 0.0, 0.0) -- X, Y, Z | Default Rotation
@@ -74,9 +74,9 @@ Config.Flatbeds = {
 Config.BedProp = "inm_flatbed_base" -- String | Hash Of The Bed Prop
 
 Config.Translation = { -- String | Translations
-    ["LOWER"] = "~INPUT_CELLPHONE_DOWN~ ~y~Lower~s~ Bed",
-    ["RAISE"] = "~INPUT_CELLPHONE_UP~ ~y~Raise~s~ Bed",
+    ["LOWER"] = "~INPUT_CELLPHONE_DOWN~ ~y~Abaisser~s~ le plateau",
+    ["RAISE"] = "~INPUT_CELLPHONE_UP~ ~y~Raise~s~ le plateau",
 
-    ["ATTACH"] = "~INPUT_DETONATE~ ~g~Attach~s~ Vehicle",
-    ["DETACH"] = "~INPUT_DETONATE~ ~r~Detach~s~ Vehicle"
+    ["ATTACH"] = "~INPUT_DETONATE~ ~g~Attacher~s~ le véhicule",
+    ["DETACH"] = "~INPUT_DETONATE~ ~r~Détacher~s~ le véhicule"
 }
