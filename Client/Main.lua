@@ -102,7 +102,7 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
                 local BedRot = VehicleInfo.Default.Rot
 
                 repeat
-                    Citizen.Wait(10)
+                    Wait(10)
                     BedPos = math.floor((BedPos - vector3(0.0, 0.02, 0.0)) * 1000) / 1000
 
                     if BedPos.y < VehicleInfo.Active.Pos.y then
@@ -114,7 +114,7 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
                 until BedPos.y == VehicleInfo.Active.Pos.y
 
                 repeat
-                    Citizen.Wait(10)
+                    Wait(10)
                     if BedPos.z ~= VehicleInfo.Active.Pos.z then
                         BedPos = math.floor((BedPos - vector3(0.0, 0.0, 0.0105)) * 1000) / 1000
 
@@ -142,7 +142,7 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
                 local BedRot = VehicleInfo.Active.Rot
 
                 repeat
-                    Citizen.Wait(10)
+                    Wait(10)
                     if BedPos.z ~= VehicleInfo.Default.Pos.z then
                         BedPos = math.floor((BedPos + vector3(0.0, 0.0, 0.0105)) * 1000) / 1000
 
@@ -163,7 +163,7 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
                 until BedRot.x == VehicleInfo.Default.Rot.x and BedPos.z == VehicleInfo.Default.Pos.z
 
                 repeat
-                    Citizen.Wait(10)
+                    Wait(10)
                     BedPos = math.floor((BedPos + vector3(0.0, 0.02, 0.0)) * 1000) / 1000
 
                     if BedPos.y > VehicleInfo.Default.Pos.y then
@@ -209,9 +209,9 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
     Busy = false
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
-        Citizen.Wait(1)
+        Wait(1)
 
         if not DoesEntityExist(LastVehicle) or NetworkGetEntityOwner(LastVehicle) ~= PlayerId() then
             LastVehicle = nil

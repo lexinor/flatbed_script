@@ -36,9 +36,9 @@ AddEventHandler("ti_flatbed:action", function(VehicleId, Action)
     TriggerClientEvent("ti_flatbed:action", source, FlatbedProps[VehicleId], Action)
 end)
 
-Citizen.CreateThread(function()
+CreateThread(function()
     while true do
-        Citizen.Wait(100)
+        Wait(100)
 
         for CurrentFlatbed, CurrentInfo in pairs(FlatbedProps) do
             if not DoesEntityExist(NetworkGetEntityFromNetworkId(CurrentFlatbed)) then

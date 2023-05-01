@@ -75,7 +75,7 @@ Config.BedProp = "inm_flatbed_base" -- String | Hash Of The Bed Prop
 
 Config.Translation = { -- String | Translations
     ["LOWER"] = "~INPUT_CELLPHONE_DOWN~ ~y~Abaisser~s~ le plateau",
-    ["RAISE"] = "~INPUT_CELLPHONE_UP~ ~y~Raise~s~ le plateau",
+    ["RAISE"] = "~INPUT_CELLPHONE_UP~ ~y~Relever~s~ le plateau",
 
     ["ATTACH"] = "~INPUT_DETONATE~ ~g~Attacher~s~ le véhicule",
     ["DETACH"] = "~INPUT_DETONATE~ ~r~Détacher~s~ le véhicule"
