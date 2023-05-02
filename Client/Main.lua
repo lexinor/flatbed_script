@@ -103,8 +103,7 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
 
                 repeat
                     Wait(10)
-                    BedPos = math.floor((BedPos - vector3(0.0, 0.02, 0.0)) * 1000) / 1000
-
+                    BedPos = ((BedPos - vector3(0.0, 0.02, 0.0)) * 1000) / 1000
                     if BedPos.y < VehicleInfo.Active.Pos.y then
                         BedPos = vector3(BedPos.x, VehicleInfo.Active.Pos.y, BedPos.z)
                     end
@@ -116,14 +115,14 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
                 repeat
                     Wait(10)
                     if BedPos.z ~= VehicleInfo.Active.Pos.z then
-                        BedPos = math.floor((BedPos - vector3(0.0, 0.0, 0.0105)) * 1000) / 1000
+                        BedPos = ((BedPos - vector3(0.0, 0.0, 0.0105)) * 1000) / 1000
 
                         if BedPos.z < VehicleInfo.Active.Pos.z then
                             BedPos = vector3(BedPos.x, BedPos.y, VehicleInfo.Active.Pos.z)
                         end
                     end
                     if BedRot.x ~= VehicleInfo.Active.Rot.x then
-                        BedRot = math.floor((BedRot + vector3(0.15, 0, 0.0)) * 1000) / 1000
+                        BedRot = ((BedRot + vector3(0.15, 0, 0.0)) * 1000) / 1000
                         
                         if BedRot.x > VehicleInfo.Active.Rot.x then
                             BedRot = vector3(VehicleInfo.Active.Rot.x, 0.0, 0.0)
@@ -144,14 +143,14 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
                 repeat
                     Wait(10)
                     if BedPos.z ~= VehicleInfo.Default.Pos.z then
-                        BedPos = math.floor((BedPos + vector3(0.0, 0.0, 0.0105)) * 1000) / 1000
+                        BedPos = ((BedPos + vector3(0.0, 0.0, 0.0105)) * 1000) / 1000
 
                         if BedPos.z > VehicleInfo.Default.Pos.z then
                             BedPos = vector3(BedPos.x, BedPos.y, VehicleInfo.Default.Pos.z)
                         end
                     end
                     if BedRot.x ~= VehicleInfo.Default.Rot.x then
-                        BedRot = math.floor((BedRot - vector3(0.15, 0, 0.0)) * 1000) / 1000
+                        BedRot = ((BedRot - vector3(0.15, 0, 0.0)) * 1000) / 1000
                         
                         if BedRot.x < VehicleInfo.Default.Rot.x then
                             BedRot = vector3(VehicleInfo.Default.Rot.x, 0.0, 0.0)
@@ -164,7 +163,7 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
 
                 repeat
                     Wait(10)
-                    BedPos = math.floor((BedPos + vector3(0.0, 0.02, 0.0)) * 1000) / 1000
+                    BedPos = ((BedPos + vector3(0.0, 0.02, 0.0)) * 1000) / 1000
 
                     if BedPos.y > VehicleInfo.Default.Pos.y then
                         BedPos = vector3(BedPos.x, VehicleInfo.Default.Pos.y, BedPos.z)
@@ -186,8 +185,7 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
                     local VehicleCoords = GetEntityCoords(ClosestVehicle)
 
                     AttachEntityToEntity(ClosestVehicle, PropID, nil, GetOffsetFromEntityGivenWorldCoords(PropID, VehicleCoords), vector3(0.0, 0.0, 0.0), true, false, true, false, nil, true)
-
-                    TriggerServerEvent("ti_flatbed:editProp", NetworkGetNetworkIdFromEntity(LastVehicle), "Attached", NetworkGetNetworkIdFromEntity(ClosestVehicle))
+                    TriggerServerEvent("ti_flatbed:editProp", flatbed, "Attached", vehicleToAttach)
                 end
             end
 
