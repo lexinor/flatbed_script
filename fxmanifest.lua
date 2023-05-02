@@ -13,6 +13,8 @@ game 'gta5'
 author 'Tinus_NL'
 description 'Tinus Flatbed'
 
+lua54 'yes'
+
 shared_scripts {
     '@ox_lib/init.lua'
 }
