@@ -179,7 +179,8 @@ AddEventHandler('ti_flatbed:action', function(BedInfo, Action)
         elseif Action == "attach" then
             if not BedInfo.Attached then
                 local AttachCoords = GetOffsetFromEntityInWorldCoords(PropID, vector3(VehicleInfo.Attach.x, VehicleInfo.Attach.y, 0.0))
-                local ClosestVehicle = GetNearestVehicle(AttachCoords, VehicleInfo.Radius)
+                --local ClosestVehicle = GetNearestVehicle(AttachCoords, VehicleInfo.Radius)
+                local ClosestVehicle, vehicleCoords = lib.getClosestVehicle(AttachCoords, VehicleInfo.Radius, false)
 
                 if DoesEntityExist(ClosestVehicle) and ClosestVehicle ~= LastVehicle then
                     local VehicleCoords = GetEntityCoords(ClosestVehicle)
@@ -219,7 +220,7 @@ CreateThread(function()
             LastAttach = nil
         end
 
-        local PlayerVehicle = GetVehiclePedIsIn(PlayerPedId(), false)
+        local PlayerVehicle = GetVehiclePedIsIn(cache.ped or PlayerPedId(), false)
 
         if PlayerVehicle ~= 0 then
             if PlayerVehicle ~= LastVehicle then
@@ -240,7 +241,7 @@ CreateThread(function()
             end
         else
             if LastVehicle then
-                local PlayerCoords = GetEntityCoords(PlayerPedId())
+                local PlayerCoords = GetEntityCoords(cache.ped or PlayerPedId())
                 local VehicleInfo = GetVehicleInfo(GetEntityModel(LastVehicle))
                 local MarkerCoords = GetOffsetFromEntityInWorldCoords(LastVehicle, VehicleInfo.Marker)
 
@@ -273,7 +274,7 @@ CreateThread(function()
                             AddTextComponentSubstringPlayerName(Config.Translation.LOWER)
                             EndTextCommandDisplayHelp(0, 0, 1, -1)
 
-                            if IsControlJustPressed(1, Config.Keys.Lower) then
+                            if IsControlJustReleased(1, Config.Keys.Lower) then
                                 Busy = true
                                 TriggerServerEvent("ti_flatbed:action", NetworkGetNetworkIdFromEntity(LastVehicle), "lower")
                             end
@@ -284,7 +285,8 @@ CreateThread(function()
                                 HelpMsg = HelpMsg.."\n"..Config.Translation.DETACH
                             else
                                 local BedCoords = GetOffsetFromEntityInWorldCoords(LastVehicle, VehicleInfo.Active.Pos)
-                                local ClosestVehicle = GetNearestVehicle(BedCoords - vector3(0.0, 1.0, 0.0), VehicleInfo.Radius)
+                                --local ClosestVehicle = GetNearestVehicle(BedCoords - vector3(0.0, 1.0, 0.0), VehicleInfo.Radius)
+                                local ClosestVehicle, vehicleCoords = lib.getClosestVehicle(BedCoords - vector3(0.0, 1.0, 0.0), VehicleInfo.Radius, false)
                                 
                                 if DoesEntityExist(ClosestVehicle) and ClosestVehicle ~= LastVehicle then
                                     HelpMsg = HelpMsg.."\n"..Config.Translation.ATTACH
@@ -295,12 +297,12 @@ CreateThread(function()
                             AddTextComponentSubstringPlayerName(HelpMsg)
                             EndTextCommandDisplayHelp(0, 0, 1, -1)
 
-                            if IsControlJustPressed(1, Config.Keys.Raise) then
+                            if IsControlJustReleased(1, Config.Keys.Raise) then
                                 Busy = true
                                 TriggerServerEvent("ti_flatbed:action", NetworkGetNetworkIdFromEntity(LastVehicle), "raise")
                             end
 
-                            if IsControlJustPressed(1, Config.Keys.Attach_Detach) then
+                            if IsControlJustReleased(1, Config.Keys.Attach_Detach) then
                                 Busy = true
                                 if LastAttach then
                                     TriggerServerEvent("ti_flatbed:action", NetworkGetNetworkIdFromEntity(LastVehicle), "detach")

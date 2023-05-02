@@ -7,11 +7,15 @@
                                    |_____|
 ]]--
 
-fx_version 'adamant'
+fx_version 'cerulean'
 game 'gta5'
 
 author 'Tinus_NL'
 description 'Tinus Flatbed'
+
+shared_scripts {
+    '@ox_lib/init.lua'
+}
 
 client_scripts {
     -- Configuration
